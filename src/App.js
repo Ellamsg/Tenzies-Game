@@ -7,7 +7,7 @@ function App() {
   const [dice, setDice] = React.useState(allNewDice());
 
   {
-    /*holdDice function */
+    /*holdDice function to check which dice was pressed */
   }
   function holdDice(id) {
     console.log(id);
