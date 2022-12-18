@@ -7,10 +7,14 @@ function App() {
   const [dice, setDice] = React.useState(allNewDice());
 
   {
-    /*holdDice function to check which dice was pressed */
+    /*holdDice function to check which dice was pressed  */
   }
   function holdDice(id) {
-    console.log(id);
+    setDice(oldDice => oldDice.map(die =>{
+
+      return die.id === id? 
+      {...die, isHeld: !die.isHeld} :die
+    }))
   }
   {
     /* function to generate random number */
