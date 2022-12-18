@@ -2,13 +2,11 @@ import "./App.css";
 import Die from "./components/Die";
 import React from "react";
 import { nanoid } from "nanoid";
-
+  
 function App() {
   const [dice, setDice] = React.useState(allNewDice());
-
-  {
-    /*holdDice function to check which dice was pressed  */
-  }
+   
+  {/*holdDice function to check which dice was pressed  */}
   function holdDice(id) {
     setDice(oldDice => oldDice.map(die =>{
 
@@ -16,25 +14,30 @@ function App() {
       {...die, isHeld: !die.isHeld} :die
     }))
   }
-  {
-    /* function to generate random number */
+  {/* function to generate random number */}
+  function generateNewDie(){
+   return{
+      value: Math.ceil(Math.random() * 6),
+      isHeld: false,
+      id: nanoid(),
+    }
+  
   }
   function allNewDice() {
     const newDice = [];
-    for (let i = 0; i < 10; i++) {
-      newDice.push({
-        value: Math.ceil(Math.random() * 6),
-        isHeld: false,
-        id: nanoid(),
-      });
+    for (let i = 0; i < 10; i++){
+      newDice.push(generateNewDie());
     }
     return newDice;
   }
-  {
-    /* function to reset random number button */
-  }
+
+  { /* function to reset random number button */}
   function rollDice() {
-    setDice(allNewDice);
+    setDice(oldDice => oldDice.map(die =>{
+      { /* hold pressed die and only reset unpressed die*/}
+      return die.isHeld ? 
+       die :generateNewDie()
+    }))
   }
  
   {
@@ -61,6 +64,9 @@ function App() {
   return (
     <div className="App">
       <main>
+      <h1 className="title">Tenzies</h1>
+            <p className="instructions">Roll until all dice are the same.
+             Click each die to freeze it at its current value between rolls.</p>
         <div className="dice-container">
           {/*render mapped die element here from the Die.js components */}
           {diceElements}
