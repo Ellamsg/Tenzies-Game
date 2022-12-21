@@ -5,15 +5,37 @@ import { nanoid } from "nanoid";
   
 function App() {
   const [dice, setDice] = React.useState(allNewDice());
-   
+   const [tenzies, setTenzies]= React.useState(false);
+
+  {/*use effect */}
+   React.useEffect(() =>{
+     const allHeld = dice.every(die => die.isHeld)
+     const firstValue = dice[0].value
+     const allSameValue = dice.every(die => die.value === firstValue)
+     if (allHeld && allSameValue){
+       setTenzies(true)
+       console.log("you won")
+     }
+   },[dice])
+
+/**
+ * Challenge: Check the dice array for these winning conditions:
+ * 1. All dice are held, and
+ * 2. all dice have the same value
+ * 
+ * If both conditions are true, set `tenzies` to true and log
+ * "You won!" to the console
+ */
+
   {/*holdDice function to check which dice was pressed  */}
-  function holdDice(id) {
+  function holdDice(id){
     setDice(oldDice => oldDice.map(die =>{
 
       return die.id === id? 
       {...die, isHeld: !die.isHeld} :die
     }))
   }
+
   {/* function to generate random number */}
   function generateNewDie(){
    return{
@@ -23,6 +45,7 @@ function App() {
     }
   
   }
+
   function allNewDice() {
     const newDice = [];
     for (let i = 0; i < 10; i++){
