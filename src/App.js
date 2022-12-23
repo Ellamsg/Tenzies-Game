@@ -32,9 +32,8 @@ function App() {
    * "You won!" to the console
    */
 
-  {
-    /*holdDice function to check which dice was pressed  */
-  }
+  { /*holdDice function to check which dice was pressed  */}
+
   function holdDice(id) {
     setDice((oldDice) =>
       oldDice.map((die) => {
@@ -66,14 +65,18 @@ function App() {
     /* function to reset random number button */
   }
   function rollDice() {
+      {/* if the tenzies are not thesame keep generating new die*/}
+    if (!tenzies){
     setDice((oldDice) =>
       oldDice.map((die) => {
-        {
-          /* hold pressed die and only reset unpressed die*/
-        }
+        {/* hold pressed die and only reset unpressed die*/}
         return die.isHeld ? die : generateNewDie();
       })
     );
+  } else{
+    setTenzies(false)
+    setDice(allNewDice())
+  }
   }
 
   {
