@@ -43,7 +43,7 @@ function App() {
   }
 
   {
-    /* function to generate random number */
+    /* function to Generate random number */
   }
   function generateNewDie() {
     return {
