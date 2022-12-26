@@ -1,5 +1,5 @@
 # live site
- tenz-game.netlify.app
+ https://tenz-game.netlify.app
  
 # Getting Started with Create React App
 
